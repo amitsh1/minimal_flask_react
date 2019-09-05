@@ -2,12 +2,196 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-class App extends React.Component {
-    render() {
-        return (
-            <div>My Flask React App!</div>
-        );
-    }
+//
+// ****************
+
+
+class ProductCategoryRow extends React.Component {
+  render() {
+    const category = this.props.category;
+    return (
+      <tr>
+        <th colSpan="2">
+          {category}
+        </th>
+      </tr>
+    );
+  }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+class ProductRow extends React.Component {
+  render() {
+    const product = this.props.product;
+    const name = product.stocked ?
+      product.name :
+      <span style={{color: 'red'}}>
+        {product.name}
+      </span>;
+
+    return (
+      <tr>
+        <td>{name}</td>
+        <td>{product.price}</td>
+      </tr>
+    );
+  }
+}
+
+class ProductTable extends React.Component {
+  render() {
+    const filterText = this.props.filterText;
+    const inStockOnly = this.props.inStockOnly;
+
+    const rows = [];
+    let lastCategory = null;
+
+    this.props.products.forEach((product) => {
+      if (product.name.indexOf(filterText) === -1) {
+        return;
+      }
+      if (inStockOnly && !product.stocked) {
+        return;
+      }
+      if (product.category !== lastCategory) {
+        rows.push(
+          <ProductCategoryRow
+            category={product.category}
+            key={product.category} />
+        );
+      }
+      rows.push(
+        <ProductRow
+          product={product}
+          key={product.name}
+        />
+      );
+      lastCategory = product.category;
+    });
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+    );
+  }
+}
+
+class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+    this.handleInStockChange = this.handleInStockChange.bind(this);
+  }
+
+  handleFilterTextChange(e) {
+    this.props.onFilterTextChange(e.target.value);
+  }
+
+  handleInStockChange(e) {
+    this.props.onInStockChange(e.target.checked);
+  }
+
+  render() {
+    return (
+      <form>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={this.props.filterText}
+          onChange={this.handleFilterTextChange}
+        />
+        <p>
+          <input
+            type="checkbox"
+            checked={this.props.inStockOnly}
+            onChange={this.handleInStockChange}
+          />
+          {' '}
+          Only show products in stock
+        </p>
+      </form>
+    );
+  }
+}
+
+class FilterableProductTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      PRODUCTS:[],
+      filterText: '',
+      inStockOnly: false
+    };
+
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+    this.handleInStockChange = this.handleInStockChange.bind(this);
+  }
+
+  handleFilterTextChange(filterText) {
+    this.setState({
+      filterText: filterText
+    });
+  }
+
+  handleInStockChange(inStockOnly) {
+    this.setState({
+      inStockOnly: inStockOnly
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <SearchBar
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+          onFilterTextChange={this.handleFilterTextChange}
+          onInStockChange={this.handleInStockChange}
+        />
+        <ProductTable
+          products={this.state.PRODUCTS}
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+        />
+      </div>
+    );
+  }
+  componentWillMount() {
+    fetch('http://localhost:3000/products')
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({ PRODUCTS: data })
+      console.log(this.state.PRODUCTS)
+    })
+    .catch(console.log)
+  }
+}
+
+
+
+ReactDOM.render(
+  <FilterableProductTable />,
+  document.getElementById('app')
+);
+
+
+
+
+
+// ***********************
+//
+// class App extends React.Component {
+//     render() {
+//         return (
+//             <div>My Flask Reasdfsdffffffct App!</div>
+//         );
+//     }
+// }
+//
+// ReactDOM.render(<App />, document.getElementById('app'));
