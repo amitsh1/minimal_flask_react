@@ -3,6 +3,9 @@
 import os
 from flask import Flask, render_template,jsonify
 app = Flask(__name__)
+
+# read a dataframe
+# build a table
 PRODUCTS = [
   {'category': 'Sporting Goods', 'price': '$49.99', 'stocked': True, 'name': 'Football'},
   {'category': 'Sporting Goods', 'price': '$9.99', 'stocked': True, 'name': 'Baseball'},
@@ -10,7 +13,7 @@ PRODUCTS = [
   {'category': 'Electronics', 'price': '$99.99', 'stocked': True, 'name': 'iPod Touch'},
   {'category': 'Electronics', 'price': '$399.99', 'stocked': False, 'name': 'iPhone 5'},
   {'category': 'Electronics', 'price': '$199.99', 'stocked': True, 'name': 'Nexus 7'}
-]
+]*10
 
 @app.route("/")
 def index():
