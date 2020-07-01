@@ -6,14 +6,67 @@ app = Flask(__name__)
 
 # read a dataframe
 # build a table
-PRODUCTS = [
-  {'category': 'Sporting Goods', 'price': '$49.99', 'stocked': True, 'name': 'Football'},
-  {'category': 'Sporting Goods', 'price': '$9.99', 'stocked': True, 'name': 'Baseball'},
-  {'category': 'Sporting Goods', 'price': '$29.99', 'stocked': False, 'name': 'Basketball'},
-  {'category': 'Electronics', 'price': '$99.99', 'stocked': True, 'name': 'iPod Touch'},
-  {'category': 'Electronics', 'price': '$399.99', 'stocked': False, 'name': 'iPhone 5'},
-  {'category': 'Electronics', 'price': '$199.99', 'stocked': True, 'name': 'Nexus 7'}
-]*10
+PRODUCTS = [{"id":"ggggg","avatar":"ad","firstName":5,"lastName":"5"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"ggg","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},                                
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},                                
+];
 
 @app.route("/")
 def index():
@@ -23,6 +76,18 @@ def index():
 def blabla():
     return jsonify(PRODUCTS)
 
+@app.route('/products1', methods=['GET'])
+def blabla2():
+    return jsonify([
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},                                
+{"id":"avatsar","avatar":"sad","firstName":"5","lastName":"5s"},  
 
+    ])
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=os.environ.get('PORT', 3000), debug='true')
